@@ -2,8 +2,16 @@
 
 import React, { useState } from 'react';
 
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
     email: '',
@@ -11,12 +19,12 @@ const ContactUs = () => {
     message: ''
   });
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.firstName || !formData.email || !formData.message) {
       alert('Please fill in all required fields!');
@@ -29,8 +37,6 @@ const ContactUs = () => {
 
   return (
     <div className='relative w-full min-h-screen flex items-center justify-center px-4 sm:px-8 md:px-16 bg-black text-white overflow-hidden transition-colors duration-300'>
-      <div className='absolute inset-0'></div>
-
       <div className='relative z-10 w-full max-w-lg p-6 sm:p-8 rounded-xl shadow-[0_0_20px_gold] border-4 border-gold bg-black'>
         <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center font-['Dancing_Script',cursive]">Contact Us</h2>
 
